@@ -69,90 +69,93 @@ students_list = []
 while True:
 
     # TODO 9 handle Exception for selection input
-    selection = int(input("1.Add New Student\n"
-                          "2.Delete Student\n"
-                          "3.Display Student\n"
-                          "4.Get Student Average\n"
-                          "5.Add Course to student with mark.\n"
-                          "6.Exit"))
+    try:
+        selection = int(input("1.Add New Student\n"
+                              "2.Delete Student\n"
+                              "3.Display Student\n"
+                              "4.Get Student Average\n"
+                              "5.Add Course to student with mark.\n"
+                              "6.Exit"))
 
-    if selection == 1:
+        if selection == 1:
 
-        # TODO 10 make sure that Student number is not exists before
-        student_number = input("Enter Student Number")
-        for i in students_list:
-            if student_number == i.student_number:
-                print(f'{student_number} is exists')
-                break
+            # TODO 10 make sure that Student number is not exists before
+            student_number = input("Enter Student Number")
+            for i in students_list:
+                if student_number == i.student_number:
+                    print(f'{student_number} is exists')
+                    break
 
-        student_name = input("Enter Student Name")
-        while True:
-            try:
-                student_age = int(input("Enter Student Age"))
-                break
-            except:
-                print("Invalid Value")
+            student_name = input("Enter Student Name")
+            while True:
+                try:
+                    student_age = int(input("Enter Student Age"))
+                    break
+                except:
+                    print("Invalid Value")
 
-        # TODO 11 create student object and append it to students list
-        new_student = Student(student_name, student_age, student_number)
-        students_list.append(new_student)
-        print("Student Added Successfully")
+            # TODO 11 create student object and append it to students list
+            new_student = Student(student_name, student_age, student_number)
+            students_list.append(new_student)
+            print("Student Added Successfully")
 
-    elif selection == 2:
-        student_number = input("Enter Student Number")
-        # TODO 12 find the target student using loops and delete it if exist , if not print ("Student Not Exist")
-        x = False
-        for i in students_list:
-            if i.student_number == student_number:
-                students_list.remove(i)
-                x = True
-                break
-        if x:
-            print("Student Deleted Successfully")
+        elif selection == 2:
+            student_number = input("Enter Student Number")
+            # TODO 12 find the target student using loops and delete it if exist , if not print ("Student Not Exist")
+            x = False
+            for i in students_list:
+                if i.student_number == student_number:
+                    students_list.remove(i)
+                    x = True
+                    break
+            if x:
+                print("Student Deleted Successfully")
+            else:
+                print("Student Not Exist")
+
+        elif selection == 3:
+            student_number = input("Enter Student Number")
+            # TODO 13 find the target student using loops and print student detials  if exist , if not print ("Student Not Exist")
+            x = False
+            for i in students_list:
+                if i.student_number == student_number:
+                    print("Student Detials :")
+                    print(i.get_student_details())
+                    x = True
+                    break
+            if not x:
+                print("Student Not Exist")
+
+        elif selection == 4:
+            student_number = input("Enter Student Number")
+            # TODO 14 find the target student using loops and get student average  if exist , if not print ("Student Not Exist")
+            x = False
+            for i in students_list:
+                if i.student_number == student_number:
+                    print(f"Student Average : {i.get_student_average()}")
+                    x = True
+                    break
+            if not x:
+                print("Student Not Exist")
+
+        elif selection == 5:
+            student_number = input("Enter Student Number")
+            # TODO 15 ask user to enter course name and course mark then create coures object then append it to target student courses
+            x = False
+            for i in students_list:
+                if i.student_number == student_number:
+                    course_name = input("Enter the course name :")
+                    course_mark = input("Enter the course mark :")
+                    Student.enroll_new_course(course_name, course_mark)
+                    x = True
+                    break
+            if x:
+                print("Course Added Successfully")
+            else:
+                print("Student Not Exist")
+
         else:
-            print("Student Not Exist")
-
-    elif selection == 3:
-        student_number = input("Enter Student Number")
-        # TODO 13 find the target student using loops and print student detials  if exist , if not print ("Student Not Exist")
-        x = False
-        for i in students_list:
-            if i.student_number == student_number:
-                print("Student Detials :")
-                print(i.get_student_details())
-                x = True
-                break
-        if not x:
-            print("Student Not Exist")
-
-    elif selection == 4:
-        student_number = input("Enter Student Number")
-        # TODO 14 find the target student using loops and get student average  if exist , if not print ("Student Not Exist")
-        x = False
-        for i in students_list:
-            if i.student_number == student_number:
-                print(f"Student Average : {i.get_student_average()}")
-                x = True
-                break
-        if not x:
-            print("Student Not Exist")
-
-    elif selection == 5:
-        student_number = input("Enter Student Number")
-        # TODO 15 ask user to enter course name and course mark then create coures object then append it to target student courses
-        x = False
-        for i in students_list:
-            if i.student_number == student_number:
-                course_name = input("Enter the course name :")
-                course_mark = input("Enter the course mark :")
-                Student.enroll_new_course(course_name, course_mark)
-                x = True
-                break
-        if x:
-            print("Course Added Successfully")
-        else:
-            print("Student Not Exist")
-
-    else:
-        # TODO 16 call a function to exit the program
-        break
+            # TODO 16 call a function to exit the program
+            break
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")

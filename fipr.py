@@ -140,6 +140,18 @@ while True:
     elif selection == 5:
         student_number = input("Enter Student Number")
         # TODO 15 ask user to enter course name and course mark then create coures object then append it to target student courses
+        x = False
+        for i in students_list:
+            if i.student_number == student_number:
+                course_name = input("Enter the course name :")
+                course_mark = input("Enter the course mark :")
+                Student.enroll_new_course(course_name, course_mark)
+                x = True
+                break
+        if x:
+            print("Course Added Successfully")
+        else:
+            print("Student Not Exist")
 
     else:
         # TODO 16 call a function to exit the program

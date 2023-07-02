@@ -16,8 +16,10 @@ class Course:
         self.course_name = name
         self.course_mark = mark
 
+
 class Student:
     # TODO 3 define static variable indicates total student count
+    student_count = 0
 
     # TODO 4 define a constructor which includes
     # student_id (unique using uuid module)
